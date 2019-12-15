@@ -17,7 +17,6 @@ namespace SimpleLogTracer
         private readonly string m_logFilePath;
 
         private ELoggerLevel m_loggerLevel;
-        private LoggerDateTimeFormat m_loggerDateTimeFormat;
         private uint m_logEntryNumber;
 
         #region Class properties
@@ -48,13 +47,9 @@ namespace SimpleLogTracer
         /// <summary>
         ///     Logger date time format settings
         /// </summary>
-        /// <exception cref="ArgumentNullException">Thrown when new value is null</exception>
         public LoggerDateTimeFormat LoggerDateTimeFormat
         {
-            get
-            {
-                return m_loggerDateTimeFormat;
-            }
+            get;
         }
 
         /// <summary>
@@ -158,7 +153,7 @@ namespace SimpleLogTracer
             // Set logger level
             m_loggerLevel = loggerLevel;
             // Whether or not logger date time format is null, instantiate new object
-            m_loggerDateTimeFormat = loggerDateTimeFormat ?? new LoggerDateTimeFormat();
+            LoggerDateTimeFormat = loggerDateTimeFormat ?? new LoggerDateTimeFormat();
             
             // Set log level in entry setting as true by default
             LogLevelInEntry = true;
@@ -192,7 +187,7 @@ namespace SimpleLogTracer
             // Set logger level
             m_loggerLevel = loggerLevel;
             // Whether or not logger date time format is null, instantiate new object
-            m_loggerDateTimeFormat = loggerDateTimeFormat ?? new LoggerDateTimeFormat();
+            LoggerDateTimeFormat = loggerDateTimeFormat ?? new LoggerDateTimeFormat();
 
             // Set log file path as null
             m_logFilePath = null;
@@ -334,7 +329,7 @@ namespace SimpleLogTracer
         {
             StringBuilder l_logEntry = new StringBuilder();
 
-            string log_date = m_loggerDateTimeFormat.FormattedDateTime();
+            string log_date = LoggerDateTimeFormat.FormattedDateTime();
             string log_lvl = "[" + Enum.GetName(logLevel.GetType(), logLevel).ToUpper() + "]";
             string log_lvl_struct = LogLevelInEntry ? (log_lvl + " ").PadRight(DEFAULT_PAD_RIGHT, '=') + "===> " : string.Empty;
             string log_entry_num = LogEntryNumbering ? "<" + (++m_logEntryNumber).ToString() + "> " : string.Empty;
