@@ -159,7 +159,7 @@ public SimpleLogTracer(string logFilePath, bool append)
 A fourth constructor is provided in case appending to the log file is needed, other options are the same as previous constructor.
 
 ## Examples
-A set of examples can be found in the following route in the project `./SimpleLogTracer/Examples`.
+A set of examples can be found in the following route in the project `SimpleLogTracer/Examples`.
 
 ## License
 MIT License
