@@ -9,7 +9,7 @@
         Day2Month2Year4,
         Month2Day2Year2,
         Month2Day2Year4,
-        Year4Month2Day2,
-        Year2Month2Day2
+        Year2Month2Day2,
+        Year4Month2Day2
     }
 }
