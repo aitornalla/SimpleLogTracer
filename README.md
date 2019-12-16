@@ -13,6 +13,11 @@
   * [Deletion of log file at disposal](#deletion-of-log-file-at-disposal)
 * [Constructors](#constructors)
 * [Examples](#examples)
+  * [Basic instantiation](#basic-instantiation)
+  * [Instantiation with settings](#instantiation-with-settings)
+  * [Setting properties](#setting-properties)
+  * [Writing into the log](#writing-into-the-log)
+  * [Free resources](#free-resources)
 * [License](#license)
 
 ## General info
@@ -159,7 +164,62 @@ public SimpleLogTracer(string logFilePath, bool append)
 A fourth constructor is provided in case appending to the log file is needed, other options are the same as previous constructor.
 
 ## Examples
-A set of examples can be found in the following route in the project `SimpleLogTracer/Examples`.
+### Basic instantiation
+Just pass in the log file to write into. Other settings get default values.
+
+```c#
+SimpleLogTracer logger = new SimpleLogTracer("log.txt");
+```
+
+### Instantiation with settings
+Passing in the log file, appending, enconding, numbering and csv settings. Logger level and date-time format with default values.
+
+```c#
+SimpleLogTracer logger = new SimpleLogTracer("log.txt", true, Encoding.Default, false, false);
+```
+
+Passing in the log file, appending, enconding, numbering, csv settings and logger level. Date-time format with default values.
+
+```c#
+SimpleLogTracer logger = new SimpleLogTracer("log.txt", true, Encoding.Default, true, false, ELoggerLevel.Debug);
+```
+
+Creating a `StreamWriter` and `LoggerDateTimeFormat` objects to pass them in as constructor parameters.
+
+```c#
+StreamWriter sw = new StreamWriter("log.txt", false, Encoding.UTF8);
+
+LoggerDateTimeFormat logDTFormat = new LoggerDateTimeFormat(ELoggerDateFormat.Month2Day2Year4, '/');
+
+SimpleLogTracer logger = new SimpleLogTracer(sw, true, false, ELoggerLevel.Warning, logDTFormat);
+```
+
+### Setting properties
+```c#
+logger.LoggerLevel = ELoggerLevel.All // Change logger level
+
+logger.AutoFlush = true; // AutoFlush property
+
+logger.LogLevelInEntry = false // Disable logging level information
+
+logger.LoggerDateTimeFormat.LoggerDateFormat = ELoggerDateFormat.Day2Month2Year4; // Change logger date format
+```
+
+### Writing into the log
+Use the `WriteLine` method to write into the log.
+
+```c#
+logger.WriteLine(ELoggerLevel.Info, "Writing line into the log!");
+```
+
+If the corresponding level passed to the method is enabled, an entry will be recorded on the log.
+
+### Free resources
+Don't forget to free resources once you are done with the logger ;)
+
+```c#
+logger.Dispose();
+```
 
 ## License
 MIT License
