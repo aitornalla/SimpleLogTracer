@@ -1,4 +1,4 @@
-﻿namespace SimpleLogTracer.Enums
+﻿namespace SimpleLogTracer
 {
     /// <summary>
     ///     Logger date format

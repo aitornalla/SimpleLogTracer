@@ -8,6 +8,5 @@
   <ItemGroup>
     <Folder Include="Classes\" />
     <Folder Include="Enums\" />
-    <Folder Include="Examples\" />
   </ItemGroup>
 </Project>

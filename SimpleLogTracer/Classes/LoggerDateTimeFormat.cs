@@ -1,5 +1,4 @@
-﻿using SimpleLogTracer.Enums;
-using System;
+﻿using System;
 
 namespace SimpleLogTracer
 {
