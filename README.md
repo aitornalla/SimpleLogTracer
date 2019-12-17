@@ -12,6 +12,8 @@
   * [Custom methods for events](#custom-methods-for-events)
   * [Deletion of log file at disposal](#deletion-of-log-file-at-disposal)
 * [Constructors](#constructors)
+* [Properties](#properties)
+* [Writing to the log](#writing-to-the-log)
 * [Examples](#examples)
   * [Basic instantiation](#basic-instantiation)
   * [Instantiation with settings](#instantiation-with-settings)
@@ -162,6 +164,74 @@ public SimpleLogTracer(string logFilePath, bool append)
 ```
 
 A fourth constructor is provided in case appending to the log file is needed, other options are the same as previous constructor.
+
+## Properties
+Get or set the logger level.
+
+```c#
+public ELoggerLevel LoggerLevel { get; set; }
+```
+
+Get `LoggerDateTimeFormat` and access class members to set date-time formatting.
+
+```c#
+public LoggerDateTimeFormat LoggerDateTimeFormat { get; }
+```
+
+Enable or disable automatic buffer clearing and writing to the log file.
+
+```c#
+public bool AutoFlush { get; set; }
+```
+
+Get enconding settings.
+
+```c#
+public Encoding Encoding { get; }
+```
+
+Enable or disable level information in log record.
+
+```c#
+public bool LogLevelInEntry { get; set; }
+```
+
+Check if log numbering is enabled.
+
+```c#
+public bool LogEntryNumbering { get; }
+```
+
+Get current log entry number (if enabled).
+
+```c#
+public uint LogEntryNumber { get; }
+```
+
+Check if csv formatting is enabled.
+
+```c#
+public bool LogInCSVFormat { get; }
+```
+
+## Writing to the log
+Two principal methods are to be considered when writing into the log. The first one is the `WriteLine` method in which the level and the message to log are passed in. If the level of the logger object is the same or `ELoggerLevel.All` as the one passed to the method the message will be logged, otherwise no action will be taken.
+
+```c#
+public void WriteLine(ELoggerLevel logLevel, string logMessage)
+{
+            
+}
+```
+
+The second method `Flush` is to be called if the `AutoFlush` property is set to `false` where this property enables writing automatically to the log. If set to `false` a call to this method is needed in order to get the data cleared off the buffer data and written into the log.
+
+```c#
+public void Flush()
+{
+
+}
+```
 
 ## Examples
 ### Basic instantiation
